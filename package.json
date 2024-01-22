@@ -29,8 +29,7 @@
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "ethers": "^6.4.0",
-    "fhevm": "0.1.6",
-    "fhevmjs": "^0.0.5",
+    "fhenixjs": "^0.0.4",
     "fs-extra": "^10.1.0",
     "hardhat": "^2.12.2",
     "hardhat-deploy": "^0.11.29",
@@ -88,6 +87,7 @@
     "faucet": "node getFromFaucet.js"
   },
   "dependencies": {
+    "@fhenixprotocol/contracts": "0.1.0-beta.2",
     "ganache-cli": "^6.12.2"
   }
 }

@@ -1,34 +1,16 @@
-import { FhevmInstance, createInstance } from "fhevmjs";
-import { EIP712 } from "fhevmjs/lib/sdk/token";
+import { FhenixClient, Permit, getPermit } from "fhenixjs";
 import { HardhatRuntimeEnvironment } from "hardhat/types/runtime";
 
-import { waitForBlock } from "./block";
-
 export interface FheContract {
-  instance: FhevmInstance;
-  publicKey: Uint8Array;
-  token: EIP712;
+  instance: FhenixClient;
+  permit: Permit;
 }
 
-export async function createFheInstance(hre: HardhatRuntimeEnvironment, contractAddress: string): Promise<FheContract> {
-  const { ethers } = hre;
+export async function createFheInstance(contractAddress: string, hre: HardhatRuntimeEnvironment): Promise<FheContract> {
+  const provider = hre.ethers.provider;
 
-  const chainId = await hre.getChainId();
-
-  // workaround for call not working the first time on a fresh chain
-  let fhePublicKey;
-  try {
-    fhePublicKey = await ethers.provider.call({ to: "0x0000000000000000000000000000000000000044" });
-  } catch (_) {
-    await waitForBlock(hre);
-    fhePublicKey = await ethers.provider.call({ to: "0x0000000000000000000000000000000000000044" });
-  }
-  const instance = createInstance({ chainId: Number(chainId), publicKey: fhePublicKey });
-  const genTokenResponse = instance.then((ins) => {
-    return ins.generateToken({ verifyingContract: contractAddress });
-  });
-
-  return Promise.all([instance, genTokenResponse]).then((arr) => {
-    return { instance: arr[0], publicKey: arr[1].publicKey, token: arr[1].token };
-  });
+  let instance = await FhenixClient.Create({ provider });
+  const permit = await getPermit(contractAddress, provider);
+  instance.storePermit(permit);
+  return { instance, permit };
 }
