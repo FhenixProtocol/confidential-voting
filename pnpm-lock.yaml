@@ -5,14 +5,14 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@fhenixprotocol/contracts':
-    specifier: 0.1.0-beta.2
-    version: 0.1.0-beta.2
   ganache-cli:
     specifier: ^6.12.2
     version: 6.12.2
 
 devDependencies:
+  '@fhenixprotocol/contracts':
+    specifier: 0.1.0-beta.2
+    version: 0.1.0-beta.2
   '@nomicfoundation/hardhat-chai-matchers':
     specifier: ^2.0.0
     version: 2.0.0(@nomicfoundation/hardhat-ethers@3.0.0)(chai@4.3.7)(ethers@6.4.0)(hardhat@2.12.2)
@@ -80,8 +80,8 @@ devDependencies:
     specifier: ^6.4.0
     version: 6.4.0
   fhenixjs:
-    specifier: ^0.0.4
-    version: 0.0.4
+    specifier: 0.1.0-beta.2
+    version: 0.1.0-beta.2
   fs-extra:
     specifier: ^10.1.0
     version: 10.1.0
@@ -726,7 +726,7 @@ packages:
     resolution: {integrity: sha512-ZTYvJV1JedQjeNfWp5e80Rk9ShKrPqfmVzequYpCMEG7F/vT2o7dtcKHH4IVil92YnA/J2r35pJ/4clV7ufE2Q==}
     dependencies:
       '@openzeppelin/contracts': 5.0.1
-    dev: false
+    dev: true
 
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -1214,7 +1214,7 @@ packages:
 
   /@openzeppelin/contracts@5.0.1:
     resolution: {integrity: sha512-yQJaT5HDp9hYOOp4jTYxMsR02gdFZFXhewX5HW9Jo4fsqSVqqyIO/xTHdWDaKX5a3pv1txmf076Lziz+sO7L1w==}
-    dev: false
+    dev: true
 
   /@scure/base@1.1.1:
     resolution: {integrity: sha512-ZxOhsSyxYwLJj3pLZCefNitxsj093tb2vq90mp2txoYeBqbcjDjqFhyM8eUjq/uFm6zJ+mUuqxlS2FkuSY1MTA==}
@@ -3140,8 +3140,8 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /fhenixjs@0.0.4:
-    resolution: {integrity: sha512-AqpTFJyS/IvZm6PVk1UFAfbkq93Oy0GyLY8GkSrPIGwunNuKmUvuT2R+hVMNbCEuTRCzxqUfuB+nxhmNt8Iwmw==}
+  /fhenixjs@0.1.0-beta.2:
+    resolution: {integrity: sha512-mHTNijKARjIse/dYgzWkfjpbBUwk3CS9m2sXl68lluyfaqUXzeOSzHXfYPxt8VVNhwP9bm7R5GdUYbxMI+Otwg==}
     dependencies:
       ethers: 6.10.0
       node-tfhe: 0.3.1
