@@ -8,6 +8,7 @@ import { resolve } from "path";
 import "./tasks/accounts";
 import "./tasks/add";
 import "./tasks/getCount";
+import "./tasks/vote";
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env";
 dotenvConfig({ path: resolve(__dirname, dotenvConfigPath) });
@@ -95,8 +96,8 @@ const config: HardhatUserConfig = {
     },
     localfhenix: {
       accounts: { mnemonic, path: "m/44'/60'/0'/0" },
-      chainId: 5432,
-      url: "http://localhost:8545",
+      // chainId: 5432,
+      url: "http://localhost:8547",
     },
     hardhat: {
       accounts: {

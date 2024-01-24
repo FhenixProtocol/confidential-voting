@@ -78,6 +78,7 @@
     "hardhat": "hardhat",
     "task:wrap": "hardhat task:wrap",
     "task:addCount": "hardhat task:addCount",
+    "task:vote": "hardhat task:vote",
     "task:getCount": "hardhat task:getCount",
     "test": "hardhat test --network localfhenix",
     "ci-test": "hardhat test --network ci_localfhenix",

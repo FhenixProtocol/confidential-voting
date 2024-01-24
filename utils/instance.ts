@@ -9,7 +9,7 @@ export interface FheContract {
 export async function createFheInstance(contractAddress: string, hre: HardhatRuntimeEnvironment): Promise<FheContract> {
   const provider = hre.ethers.provider;
 
-  let instance = await FhenixClient.Create({ provider });
+  let instance = new FhenixClient({ provider });
   const permit = await getPermit(contractAddress, provider);
   instance.storePermit(permit);
   return { instance, permit };
