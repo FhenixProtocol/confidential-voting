@@ -9,8 +9,8 @@ contract Voting is Permissioned {
     uint8 internal constant MAX_OPTIONS = 4;
 
     // Pre-compute these to prevent unnecessary gas usage for the users
-    euint16 internal _zero = FHE.asEuint16(0);
-    euint16 internal _one = FHE.asEuint16(1);
+    // euint16 internal _zero = FHE.asEuint16(0);
+    // euint16 internal _one = FHE.asEuint16(1);
     euint32 internal _u32Sixteen = FHE.asEuint32(16);
     euint8[MAX_OPTIONS] internal _encOptions = [FHE.asEuint8(0), FHE.asEuint8(1), FHE.asEuint8(2), FHE.asEuint8(3)];
 
@@ -39,7 +39,7 @@ contract Voting is Permissioned {
         _requireValid(encryptedVote);
 
         _votes[msg.sender] = encryptedVote;
-        _addToTally(encryptedVote, _one);
+        _addToTally(encryptedVote /* , _one */);
     }
 
     function finalize() public {
@@ -72,15 +72,15 @@ contract Voting is Permissioned {
         FHE.req(isValid);
     }
 
-    function _addToTally(euint8 option, euint16 amount) internal {
+    function _addToTally(euint8 option /* , euint16 amount */) internal {
         // We don't want to leak the user's vote, so we have to change the tally of every option.
         // So for example, if the user voted for option 1:
         // tally[0] = tally[0] + enc(0)
         // tally[1] = tally[1] + enc(1)
         // etc ..
         for (uint8 i = 0; i < options.length; i++) {
-            euint16 amountOrZero = FHE.select(option.eq(_encOptions[i]), amount, _zero);
-            _tally[i] = _tally[i] + amountOrZero;
+            // euint16 amountOrZero = FHE.select(option.eq(_encOptions[i]), _one, _zero);
+            _tally[i] = _tally[i] + option.eq(_encOptions[i]).toU16(); // `eq()` result is known to be enc(0) or enc(1)
         }
     }
 }
