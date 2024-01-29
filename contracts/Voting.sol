@@ -2,7 +2,8 @@
 
 pragma solidity >=0.8.19 <0.9.0;
 
-import "@fhenixprotocol/contracts/FHE.sol";
+// import "@fhenixprotocol/contracts/FHE.sol";
+import "./FHE.sol";
 import "@fhenixprotocol/contracts/access/Permission.sol";
 
 contract Voting is Permissioned {
@@ -80,7 +81,8 @@ contract Voting is Permissioned {
         // etc ..
         for (uint8 i = 0; i < options.length; i++) {
             // euint16 amountOrZero = FHE.select(option.eq(_encOptions[i]), _one, _zero);
-            _tally[i] = _tally[i] + option.eq(_encOptions[i]).toU16(); // `eq()` result is known to be enc(0) or enc(1)
+            ebool amountOrZero = option.eq(_encOptions[i]); // `eq()` result is known to be enc(0) or enc(1)
+            _tally[i] = _tally[i] + amountOrZero.toU16(); // `eq()` result is known to be enc(0) or enc(1)
         }
     }
 }

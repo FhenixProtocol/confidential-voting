@@ -5,9 +5,12 @@ import type { HardhatUserConfig } from "hardhat/config";
 import type { NetworkUserConfig } from "hardhat/types";
 import { resolve } from "path";
 
-import "./tasks/accounts";
 import "./tasks/add";
+import "./tasks/finalize";
+import "./tasks/fundAccounts";
 import "./tasks/getCount";
+import "./tasks/getVote";
+import "./tasks/getWinning";
 import "./tasks/vote";
 
 const dotenvConfigPath: string = process.env.DOTENV_CONFIG_PATH || "./.env";

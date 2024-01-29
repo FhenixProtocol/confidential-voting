@@ -18,9 +18,10 @@ task("task:vote")
     console.log(`contract at: ${Voting.address}, for signer: ${signers[taskArguments.account].address}`);
 
     const { instance } = await createFheInstance(Voting.address, hre);
-    const eOption = await instance.encrypt_uint32(Number(taskArguments.option));
+    const eOption = await instance.encrypt_uint8(Number(taskArguments.option));
 
-    await voting.connect(signers[Number(taskArguments.account)]).vote(eOption);
-
+    const tx = await voting.connect(signers[Number(taskArguments.account)]).vote(eOption);
+    const receipt = await tx.wait();
     console.log(`Voted for option ${taskArguments.option}!`);
+    console.log(`Result: ${JSON.stringify(receipt)}`);
   });
