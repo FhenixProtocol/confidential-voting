@@ -17,6 +17,8 @@ task("task:getVote")
     const voting = await ethers.getContractAt("Voting", Voting.address);
 
     const { instance } = await createFheInstance(Voting.address, hre);
+
+    // This relies on: https://github.com/FhenixProtocol/fhenix.js/pull/16. This will not be merged but hopefully the functionality will be added in a different way.
     const permit = await generatePermit(Voting.address, ethers.provider, signers[taskArguments.account] as Signer);
     instance.storePermit(permit);
 
